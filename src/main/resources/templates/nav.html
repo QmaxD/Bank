@@ -1,0 +1,34 @@
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<div class="header-bg">
+    <nav class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4">
+
+            <a href="https://www.neoflex.ru/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-decoration-none">
+                <img src="../../png/logo.png" class="img-fluid" style="width: 200px;" alt="logo">
+            </a>
+
+            <div th:if="${role == 'admin'}">
+                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="/dashboard" class="nav-link px-2">Пользователи</a></li>
+                    <li><a href="/admin/register" class="nav-link px-2">Создать</a></li>
+                </ul>
+            </div>
+            <div th:if="${role == 'user'}">
+                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="/dashboard" class="nav-link px-2">Счета</a></li>
+                    <li><a href="/user/create-bank-account" class="nav-link px-2">Создать счет</a></li>
+                </ul>
+            </div>
+
+
+            <div class="col-md-3 text-end">
+                <button type="button" class="btn me-2"><span th:text="${username}"></span></button>
+                <button type="button" class="btn me-2"><a href="#" th:href="@{/logout}">Logout</a></button>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<script>
+
+</script>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Login Page</title>
+	<!-- add Icon -->
+	<link rel="shortcut icon" type="image/x-icon"
+		  href="../../png/favicon.png" th:href="@{/png/favicon.png}" />
+	<!-- add Bootstrap library -->
+	<link rel="stylesheet" type="text/css" media="all"
+		  href="../../css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+	<!-- add CSS library -->
+	<link rel="stylesheet" type="text/css" media="all"
+		  href="../../css/form.css" th:href="@{/css/form.css}" />
+	<link rel="stylesheet" type="text/css" media="all"
+		  href="../../css/main.css" th:href="@{/css/main.css}" />
+	<!-- add JS library -->
+	<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery-3.6.4.js}"></script>
+</head>
+
+<body class="container">
+	<div class="formSection">
+		<h1 style="margin-top: 5%;">Войти в кабинет</h1>
+
+		<p class="warning" th:if="${error}" th:utext="${error}"></p>
+
+		<form th:action="@{/auth/login}" method="POST">
+			<label>Логин:</label>
+			<input type="text" name="username" required>
+			<label>Пароль:</label>
+			<input type="password" name="password" required>
+			<button type="submit">Войти</button>
+		</form>
+
+		<a href="#" th:href="@{/auth/register}">Зарегистрироваться</a>
+	</div>
+</body>
+</html>

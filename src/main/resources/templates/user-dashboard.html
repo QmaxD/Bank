@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>User Dashboard</title>
+	<!-- add Icon -->
+	<link rel="shortcut icon" type="image/x-icon"
+		  href="../../png/favicon.png" th:href="@{/png/favicon.png}" />
+	<!-- add Bootstrap library -->
+	<link rel="stylesheet" type="text/css" media="all"
+		  href="../../css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+	<!-- add CSS library -->
+	<link rel="stylesheet" type="text/css" media="all"
+		  href="../../css/dashboard.css" th:href="@{/css/dashboard.css}" />
+	<link rel="stylesheet" type="text/css" media="all"
+		  href="../../css/main.css" th:href="@{/css/main.css}" />
+	<!-- add JS library -->
+	<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery-3.6.4.js}"></script>
+</head>
+
+<body>
+	<div th:replace="nav"></div>
+	<h1>Welcome to User Panel</h1>
+	<div class="dashboard">
+		<table>
+			<tr>
+				<th>ID</th>
+				<th>Balance</th>
+				<th>FullName</th>
+			</tr>
+			<tr th:each="acc : ${bank_accounts}">
+				<td th:text="${acc.id}"></td>
+				<td th:text="${acc.balance}"></td>
+				<td th:text="${acc.fullName}"></td>
+			</tr>
+		</table>
+	</div>
+	<br/><hr/>
+	<div th:replace="footer"></div>
+
+	<script type="module" src="../../js/dynamicContent.js"></script>
+</body>
+</html>

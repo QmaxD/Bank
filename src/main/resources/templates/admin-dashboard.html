@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Admin Dashboard</title>
+	<!-- add Icon -->
+	<link rel="shortcut icon" type="image/x-icon"
+		  href="../../png/favicon.png" th:href="@{/png/favicon.png}" />
+	<!-- add Bootstrap library -->
+	<link rel="stylesheet" type="text/css" media="all"
+		  href="../../css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+	<!-- add CSS library -->
+	<link rel="stylesheet" type="text/css" media="all"
+		  href="../../css/dashboard.css" th:href="@{/css/dashboard.css}" />
+	<link rel="stylesheet" type="text/css" media="all"
+		  href="../../css/main.css" th:href="@{/css/main.css}" />
+	<!-- add JS library -->
+	<script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+	<script type="text/javascript" th:src="@{/js/jquery-3.6.4.js}"></script>
+</head>
+
+<body>
+	<div th:replace="nav"></div>
+	<h1>Welcome to Admin Panel</h1>
+	<div class="dashboard">
+		<table>
+			<tr>
+				<th>ID</th>
+				<th>FullName</th>
+				<th>UserName</th>
+				<th>Password</th>
+			</tr>
+			<tr th:each="user : ${users}">
+				<td th:text="${user.id}"></td>
+				<td th:text="${user.fullname}"></td>
+				<td th:text="${user.username}"></td>
+				<td th:text="${user.password}"></td>
+			</tr>
+		</table>
+	</div>
+	<br/><hr/>
+	<div th:replace="footer"></div>
+
+	<script type="module" src="../../js/dynamicContent.js"></script>
+</body>
+</html>
