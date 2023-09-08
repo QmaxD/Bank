@@ -2,7 +2,6 @@ package com.example.Bank.models;
 
 import lombok.*;
 import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Calendar;
@@ -46,6 +45,4 @@ public class BankAccount {
     private String fullName;
     @Column(name = "user_id")
     private Long userId;
-
 }
-
