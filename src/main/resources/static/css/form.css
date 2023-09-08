@@ -50,14 +50,15 @@ form {
 }
 
 .formSection {
+    margin: auto;
 	width: 35%;
 	height: auto;
-	position: absolute;
-    top: 50%;
-    left: 50%;
     background: #FFFFFF;
     border-radius: 10px;
-	margin: -200px 0 0 -300px;
+}
+
+.formSection2 {
+    border-radius: 10px;
 }
 
 label {
@@ -69,29 +70,31 @@ input {
 	height: 32px;
 	margin-bottom: 8px;
 	padding: 5px 10px;
+	border-radius: 5px;
 }
 
-button {
+.buttonSubmit {
 	height: 32px;
 	background-color: black;
 	color: white;
 	border: 1px solid black;
-	margin-top: 4px;
+	margin-top: 12px;
+	margin-bottom: 12px;
 	padding: 5px 15px;
+	border-radius: 5px;
+}
+
+select {
+  text-transform: none;
+  height: 32px;
+  margin-bottom: 8px;
+  padding: 5px 10px;
+  border-radius: 5px;
 }
 
 button:hover {
 	background-color: white;
 	color: black;
-}
-
-a {
-	display: block;
-	text-decoration: none;
-	color: red;
-	text-align: center;
-	margin-top: 4px;
-    margin-bottom: 8px;
 }
 
 a:hover {

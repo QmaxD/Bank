@@ -20,33 +20,32 @@
 </head>
 
 <body>
-	<div th:replace="nav"></div>
-	<h1>Welcome to User Panel</h1>
-	<div class="dashboard">
-		<table>
-			<tr>
-				<th style="width: 120px;">ID</th>
-				<th style="width: 80px;">Валюта</th>
-				<th style="width: 150px;">Тип счета</th>
-				<th style="width: 100px;">Баланс</th>
-				<th style="width: 100px;">Процент</th>
-				<th>Имя владельца</th>
-				<th style="width: 120px;">ID владельца</th>
-			</tr>
-			<tr th:each="acc : ${bank_accounts}">
-				<td th:text="${acc.id}"></td>
-				<td th:text="${acc.accountCurrency}"></td>
-				<td th:text="${acc.accountName}"></td>
-				<td th:text="${acc.balance}"></td>
-				<td th:text="${acc.interestRate + '%'}"></td>
-				<td th:text="${acc.fullName}"></td>
-				<td th:text="${acc.userId}"></td>
-			</tr>
-		</table>
-	</div>
-	<br/><hr/>
-	<div th:replace="footer"></div>
-
-	<script type="module" src="../../js/dynamicContent.js"></script>
+<div th:replace="nav"></div>
+<h1>Счета пользователя</h1>
+<div class="dashboard">
+	<table>
+		<tr>
+			<th style="width: 120px;">ID</th>
+			<th style="width: 80px;">Валюта</th>
+			<th style="width: 150px;">Тип счета</th>
+			<th style="width: 100px;">Баланс</th>
+			<th style="width: 100px;">Процент</th>
+			<th style="min-width: 100px;">Владелец</th>
+			<th style="width: 120px;">ID владельца</th>
+		</tr>
+		<tr th:each="acc : ${bank_accounts}">
+			<td th:text="${acc.id}"></td>
+			<td th:text="${acc.accountCurrency}"></td>
+			<td th:text="${acc.accountName}"></td>
+			<td th:text="${acc.balance}"></td>
+			<td th:text="${acc.interestRate + '%'}"></td>
+			<td th:text="${acc.fullName}"></td>
+			<td th:text="${acc.userId}"></td>
+		</tr>
+	</table>
+</div>
+<br/><hr/>
+<div th:replace="footer"></div>
+<script type="module" src="../../js/dynamicContent.js"></script>
 </body>
 </html>

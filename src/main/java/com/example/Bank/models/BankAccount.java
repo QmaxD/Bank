@@ -38,19 +38,14 @@ public class BankAccount {
     //private boolean isProlongation;
     //@Column(name = "closingDate")
     //private LocalDate closingDate;
-
     @Column(name = "accountName")
     private String accountName;// название счета (зависит от типа счета)*/
-
     @Column(name = "balance")
     private BigDecimal balance;
-
     @Column(name = "interestRate")
     private double interestRate;
-
     @Column(name = "fullName")
     private String fullName;
-
     @Column(name = "user_id")
     private Long userId;
 

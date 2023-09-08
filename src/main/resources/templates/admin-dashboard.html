@@ -25,10 +25,10 @@
 	<div class="dashboard">
 		<table>
 			<tr>
-				<th>ID</th>
-				<th>FullName</th>
-				<th>UserName</th>
-				<th>Password</th>
+				<th style="width: 120px;">ID</th>
+				<th>Владелец</th>
+				<th style="width: 160px;">Ник</th>
+				<th>Пароль</th>
 			</tr>
 			<tr th:each="user : ${users}">
 				<td th:text="${user.id}"></td>
@@ -40,7 +40,6 @@
 	</div>
 	<br/><hr/>
 	<div th:replace="footer"></div>
-
 	<script type="module" src="../../js/dynamicContent.js"></script>
 </body>
 </html>

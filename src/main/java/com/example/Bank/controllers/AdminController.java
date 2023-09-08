@@ -35,12 +35,10 @@ public class AdminController {
 	
 	@GetMapping("/dashboard")
 	public String dashboard(Model model, @AuthenticationPrincipal UserDetails userDetails) {
-
-		List<User> users = userRepository.findAll();
-		model.addAttribute("users", users);
-
 		String username = userDetails.getUsername();
 		//User user = userRepository.findByUsernameIgnoreCase(username);
+		List<User> users = userRepository.findAll();
+		model.addAttribute("users", users);
 		model.addAttribute("username", username);
 		model.addAttribute("role", "admin");
 
@@ -48,8 +46,12 @@ public class AdminController {
 	}
 	
 	@GetMapping("/register")
-	public String registrationPage(Model model) {
+	public String registrationPage(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+		String username = userDetails.getUsername();
+		//User user = userRepository.findByUsernameIgnoreCase(username);
 		model.addAttribute("user", new User());
+		model.addAttribute("username", username);
+		model.addAttribute("role", "admin");
 		return "/register-admin";
 	}
 	

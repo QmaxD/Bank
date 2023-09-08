@@ -33,10 +33,12 @@
 			<input type="text" name="username" required>
 			<label>Пароль:</label>
 			<input type="password" name="password" required>
-			<button type="submit">Зарегистрировать</button>
+			<button type="submit" class="buttonSubmit">Зарегистрировать</button>
 		</form>
 
-		<a href="#" th:href="@{/auth/login}">Зайти в логин</a>
+		<div style='text-align:center; width:100%'>
+			<a href="#" th:href="@{/auth/login}">Зайти в логин</a>
+		</div>
 	</div>
 </body>
 </html>

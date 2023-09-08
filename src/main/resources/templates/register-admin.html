@@ -19,24 +19,30 @@
 	<script type="text/javascript" th:src="@{/js/jquery-3.6.4.js}"></script>
 </head>
 
-<body class="container">
-	<div class="formSection">
-		<h1>Регистрация админа</h1>
+<body>
+<div th:replace="nav"></div>
+<div class="formSection2">
+	<h1>Регистрация админа</h1>
 
-		<p class="warning" th:if="${error}" th:utext="${error}"></p>
-		<p class="success" th:if="${success}" th:utext="${success}"></p>
+	<p class="warning" th:if="${error}" th:utext="${error}"></p>
+	<p class="success" th:if="${success}" th:utext="${success}"></p>
 
-		<form th:action="@{/admin/register}" method="POST">
-			<label>Фамилия и имя:</label>
-			<input type="text" name="fullname" required>
-			<label>Логин:</label>
-			<input type="text" name="username" required>
-			<label>Пароль:</label>
-			<input type="password" name="password" required>
-			<button type="submit">Зарегистрировать</button>
-		</form>
+	<form th:action="@{/admin/register}" method="POST">
+		<label>Фамилия и имя:</label>
+		<input type="text" name="fullname" required>
+		<label>Логин:</label>
+		<input type="text" name="username" required>
+		<label>Пароль:</label>
+		<input type="password" name="password" required>
+		<button type="submit" class="buttonSubmit">Зарегистрировать</button>
+	</form>
 
+	<div style='text-align:center; width:100%'>
 		<a href="#" th:href="@{/auth/login}">Зайти в логин</a>
 	</div>
+</div>
+<br/><hr/>
+<div th:replace="footer"></div>
+<script type="module" src="js/dynamicContent.js"></script>
 </body>
 </html>

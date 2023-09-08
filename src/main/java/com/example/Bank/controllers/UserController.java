@@ -36,16 +36,22 @@ public class UserController {
 		User user = userRepository.findByUsernameIgnoreCase(username);
 		List<BankAccount> bankAccount = bankAccountRepository.findAllByFullName(user.getFullname());
 		model.addAttribute("bank_accounts", bankAccount);
-		model.addAttribute("username", username);
+		model.addAttribute("fullname", user.getFullname());
+		model.addAttribute("username", user.getUsername());
 		model.addAttribute("role", "user");
 		return "/user-dashboard";
 	}
 
 	@GetMapping("/create-bank-account")
-	public String showFormBankAccount(Model model) {
+	public String showFormBankAccount(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+		String username = userDetails.getUsername();
+		User user = userRepository.findByUsernameIgnoreCase(username);
 		model.addAttribute("bankAccount", new BankAccount());
 		model.addAttribute("accountName", FormAttributes.accountNames);
 		model.addAttribute("accountCurrency", FormAttributes.accountCurrencies);
+		model.addAttribute("fullname", user.getFullname());
+		model.addAttribute("username", user.getUsername());
+		model.addAttribute("role", "user");
 		return "/create-bank-account";
 	}
 

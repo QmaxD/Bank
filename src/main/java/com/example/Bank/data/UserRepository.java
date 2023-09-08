@@ -11,5 +11,4 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
 	Boolean existsByUsernameIgnoreCase(String username);
 	User findByUsernameIgnoreCase(String username);
-
 }
