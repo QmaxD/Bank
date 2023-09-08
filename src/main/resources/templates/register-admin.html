@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Admin Registration Page</title>
+
 	<!-- add Icon -->
 	<link rel="shortcut icon" type="image/x-icon"
 		  href="../../png/favicon.png" th:href="@{/png/favicon.png}" />
@@ -21,6 +22,7 @@
 
 <body>
 <div th:replace="nav"></div>
+
 <div class="formSection2">
 	<h1>Регистрация админа</h1>
 
@@ -41,8 +43,10 @@
 		<a href="#" th:href="@{/auth/login}">Зайти в логин</a>
 	</div>
 </div>
+
 <br/><hr/>
 <div th:replace="footer"></div>
+
 <script type="module" src="js/dynamicContent.js"></script>
 </body>
 </html>

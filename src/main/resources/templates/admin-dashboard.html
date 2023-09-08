@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Admin Dashboard</title>
+
 	<!-- add Icon -->
 	<link rel="shortcut icon" type="image/x-icon"
 		  href="../../png/favicon.png" th:href="@{/png/favicon.png}" />
@@ -20,26 +21,29 @@
 </head>
 
 <body>
-	<div th:replace="nav"></div>
-	<h1>Welcome to Admin Panel</h1>
-	<div class="dashboard">
-		<table>
-			<tr>
-				<th style="width: 120px;">ID</th>
-				<th>Владелец</th>
-				<th style="width: 160px;">Ник</th>
-				<th>Пароль</th>
-			</tr>
-			<tr th:each="user : ${users}">
-				<td th:text="${user.id}"></td>
-				<td th:text="${user.fullname}"></td>
-				<td th:text="${user.username}"></td>
-				<td th:text="${user.password}"></td>
-			</tr>
-		</table>
-	</div>
-	<br/><hr/>
-	<div th:replace="footer"></div>
-	<script type="module" src="../../js/dynamicContent.js"></script>
+<div th:replace="nav"></div>
+
+<h1>Welcome to Admin Panel</h1>
+<div class="dashboard">
+	<table>
+		<tr>
+			<th style="width: 120px;">ID</th>
+			<th>Владелец</th>
+			<th style="width: 160px;">Ник</th>
+			<th>Пароль</th>
+		</tr>
+		<tr th:each="user : ${users}">
+			<td th:text="${user.id}"></td>
+			<td th:text="${user.fullname}"></td>
+			<td th:text="${user.username}"></td>
+			<td th:text="${user.password}"></td>
+		</tr>
+	</table>
+</div>
+
+<br/><hr/>
+<div th:replace="footer"></div>
+
+<script type="module" src="../../js/dynamicContent.js"></script>
 </body>
 </html>

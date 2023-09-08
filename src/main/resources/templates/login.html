@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Login Page</title>
+
 	<!-- add Icon -->
 	<link rel="shortcut icon" type="image/x-icon"
 		  href="../../png/favicon.png" th:href="@{/png/favicon.png}" />
@@ -20,22 +21,22 @@
 </head>
 
 <body class="container">
-	<div class="formSection">
-		<h1 style="margin-top: 5%;">Войти в кабинет</h1>
+<div class="formSection">
+	<h1 style="margin-top: 5%;">Войти в кабинет</h1>
 
-		<p class="warning" th:if="${error}" th:utext="${error}"></p>
+	<p class="warning" th:if="${error}" th:utext="${error}"></p>
 
-		<form th:action="@{/auth/login}" method="POST">
-			<label>Логин:</label>
-			<input type="text" name="username" required>
-			<label>Пароль:</label>
-			<input type="password" name="password" required>
-			<button type="submit" class="buttonSubmit">Войти</button>
-		</form>
+	<form th:action="@{/auth/login}" method="POST">
+		<label>Логин:</label>
+		<input type="text" name="username" required>
+		<label>Пароль:</label>
+		<input type="password" name="password" required>
+		<button type="submit" class="buttonSubmit">Войти</button>
+	</form>
 
-		<div style='text-align:center; width:100%'>
-			<a href="#" th:href="@{/auth/register}">Зарегистрироваться</a>
-		</div>
+	<div style='text-align:center; width:100%'>
+		<a href="#" th:href="@{/auth/register}">Зарегистрироваться</a>
 	</div>
+</div>
 </body>
 </html>

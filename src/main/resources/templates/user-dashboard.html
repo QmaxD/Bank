@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>User Dashboard</title>
+
 	<!-- add Icon -->
 	<link rel="shortcut icon" type="image/x-icon"
 		  href="../../png/favicon.png" th:href="@{/png/favicon.png}" />
@@ -21,6 +22,7 @@
 
 <body>
 <div th:replace="nav"></div>
+
 <h1>Счета пользователя</h1>
 <div class="dashboard">
 	<table>
@@ -50,8 +52,10 @@
 		</tr>
 	</table>
 </div>
+
 <br/><hr/>
 <div th:replace="footer"></div>
+
 <script type="module" src="../../js/dynamicContent.js"></script>
 </body>
 </html>
