@@ -19,7 +19,13 @@ public class AuthController {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping({"/", "/login", "/auth"})
+	@GetMapping("/")
+	public String welcome(@RequestParam(required = false) String error, Model model) {
+		model.addAttribute("role", "welcome");
+		return "/index";
+	}
+
+	@GetMapping({"/login", "/auth"})
 	public String login(@RequestParam(required = false) String error, Model model) {
 		if(error != null && error.equals("true"))
 			model.addAttribute("error", "Wrong Credentials");

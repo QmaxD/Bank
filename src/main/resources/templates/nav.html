@@ -20,10 +20,15 @@
                 </ul>
             </div>
 
-            <div class="col-md-3 text-end">
+            <div th:if="${role == 'welcome'}" class="col-md-3 text-end">
+                <button type="button" class="btn me-2 d-none"><span th:text="${username}"></span></button>
+                <button type="button" class="btn me-2"><a href="#" th:href="@{/auth/login}">Login</a></button>
+            </div>
+            <div th:if="${role == 'user' || role == 'admin'}" class="col-md-3 text-end">
                 <button type="button" class="btn me-2"><span th:text="${username}"></span></button>
                 <button type="button" class="btn me-2"><a href="#" th:href="@{/logout}">Logout</a></button>
             </div>
+
         </div>
     </nav>
 </div>

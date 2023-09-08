@@ -14,11 +14,17 @@
     <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
     <script type="text/javascript" th:src="@{/js/jquery-3.6.4.js}"></script>
 </head>
-<body class="container">
-    <div th:replace="nav"></div>
-    <h1>Welcome to...</h1>
-    <div th:replace="footer"></div>
 
-    <script type="module" src="js/dynamicContent.js"></script>
+<body>
+<div th:replace="nav"></div>
+<div style='text-align:center; width:100%'>
+    <h1>Здравствуйте!</h1>
+    <div>Вам необходимо <a href="#" th:href="@{/auth/login}">зайти</a> в личный кабинет.</div>
+    <div>Либо <a href="#" th:href="@{/auth/register}">зарегистрироваться.</a></div>
+</div>
+<br/><hr/>
+<div th:replace="footer"></div>
+
+<script type="module" src="js/dynamicContent.js"></script>
 </body>
 </html>
