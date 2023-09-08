@@ -44,6 +44,8 @@ public class UserController {
 	@GetMapping("/create-bank-account")
 	public String showFormBankAccount(Model model) {
 		model.addAttribute("bankAccount", new BankAccount());
+		model.addAttribute("accountName", FormAttributes.accountNames);
+		model.addAttribute("accountCurrency", FormAttributes.accountCurrencies);
 		return "/create-bank-account";
 	}
 
@@ -53,6 +55,10 @@ public class UserController {
 		User user = userRepository.findByUsernameIgnoreCase(username);
 		bankAccount.setUserId(user.getId());
 		bankAccount.setFullName(user.getFullname());
+		if (bankAccount.getAccountName().equals("Универсальный"))
+			bankAccount.setInterestRate(0.01);
+		else if (bankAccount.getAccountName().equals("Накопительный"))
+			bankAccount.setInterestRate(5.50);
 		bankAccountRepository.save(bankAccount);
 		return "redirect:/user/create-bank-account";
 	}
