@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.Date;
@@ -66,15 +67,16 @@ public class UserController {
 	}
 
 	@PostMapping("/create-bank-account")
-	public String createBankAccount(BankAccount bankAccount, @AuthenticationPrincipal UserDetails userDetails, RedirectAttributes ra) {
+	public String createBankAccount(BankAccount bankAccount, @AuthenticationPrincipal UserDetails userDetails, RedirectAttributes ra) throws IOException {
 		String username = userDetails.getUsername();
 		User user = userRepository.findByUsernameIgnoreCase(username);
+		System.out.println("данные из файла считаны: " + FormAttributes.getCurrentBankAccountNumberFromFile());
 
 		bankAccount.setUserId(user.getId());
 		bankAccount.setFullName(user.getFullname());
 		Calendar date = new GregorianCalendar();
 		bankAccount.setCreationDate(date);
-
+		bankAccount.setAccountNumber(FormAttributes.countCurrentBankAccountsNumber());
 		if (bankAccount.getAccountName().equals("Универсальный")){
 			bankAccount.setProlongation(true);
 			bankAccount.setInterestRate(0.01);
@@ -89,7 +91,7 @@ public class UserController {
 		}
 
 		bankAccountRepository.save(bankAccount);
-
+		System.out.println("данные записаны в файл: " + FormAttributes.writeCurrentBankAccountNumberToFile());
 		return "redirect:/user/create-bank-account";
 	}
 

@@ -28,10 +28,8 @@ public class BankAccount {
 
     @Column(name = "accountCurrency")
     private String accountCurrency;// 000 - код валюты
-
-    //@Column(name = "accountNumber")
-    //private int accountNumber;// 0 000 000 - номер счета
-
+    @Column(name = "accountNumber")
+    private long accountNumber;//номер счета
     @Column(name = "creationDate")
     private Calendar creationDate;// дата создания счета
     @Column(name = "renewalDate")
