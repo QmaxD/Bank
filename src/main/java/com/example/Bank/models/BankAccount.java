@@ -20,12 +20,10 @@ public class BankAccount {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "bankAccount_id")
     private long id;
-
     //@Column(name = "accountPlace")
     //private byte accountPlace;// 000 - местоположение (город)
     //@Column(name = "accountType")
     //private byte accountType;// 0 - тип счета
-
     @Column(name = "accountCurrency")
     private String accountCurrency;// 000 - код валюты
     @Column(name = "accountNumber")

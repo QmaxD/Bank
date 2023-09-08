@@ -35,7 +35,7 @@
 		</tr>
 		<tr th:each="acc : ${bank_accounts}">
 			<td th:text="${acc.id}"></td>
-			<td th:text="${acc.accountCurrency}"></td>
+			<td th:text="${T(com.example.Bank.models.FormAttributes).getAccountCurrencyString(acc.accountCurrency)}"></td>
 			<td th:text="${acc.accountName}"></td>
 			<td th:text="${acc.balance}"></td>
 			<td th:text="${acc.interestRate + '%'}"></td>

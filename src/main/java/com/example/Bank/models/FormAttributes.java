@@ -5,8 +5,13 @@ import java.io.*;
 public class FormAttributes {
     public static String[] accountNames = {"Универсальный", "Накопительный"};
     public static String[] accountCurrencies = {"Рубль", "Доллар", "Евро"};
+    public static enum Currencies {
+        рубль,
+        доллар,
+        евро
+    }
 
-    public static int getAccountCurrencyNumber(String accountCurrency) {
+    public static short getAccountCurrencyNumber(String accountCurrency) {
         switch (accountCurrency) {
             case "Рубль":
                 return 643;
@@ -26,6 +31,18 @@ public class FormAttributes {
                 return 3;
             default:
                 return 0;
+        }
+    }
+    public static String getAccountCurrencyString(String accountCurrencyNumber) {
+        switch (accountCurrencyNumber) {
+            case "643":
+                return "Рубль";
+            case "840":
+                return "Доллар";
+            case "978":
+                return "Евро";
+            default:
+                return "NULL";
         }
     }
 

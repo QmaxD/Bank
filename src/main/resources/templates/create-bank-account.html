@@ -23,6 +23,7 @@
 
 <body>
 <div th:replace="nav"></div>
+
 <div class="formSection2">
     <h1>Create Bank Account</h1>
 
@@ -31,24 +32,26 @@
 
     <form th:action="@{/user/create-bank-account}" th:object="${bankAccount}" method="POST">
 
-      <label for="accountName">Account Name:</label>
-      <select id="accountName" name="accountName" th:field="*{accountName}">
+        <label for="accountName">Account Name:</label>
+        <select id="accountName" name="accountName" th:field="*{accountName}">
         <option th:each="name : ${accountName}" th:value="${name}" th:text="${name}"></option>
-      </select>
+        </select>
 
-      <label>Баланс:</label>
-      <input type="text" name="balance" required>
+        <label>Баланс:</label>
+        <input type="text" name="balance" required>
 
-      <label for="accountCurrency">Account Currency:</label>
-      <select id="accountCurrency" name="accountCurrency" th:field="*{accountCurrency}">
-        <option th:each="currency : ${accountCurrency}" th:value="${currency}" th:text="${currency}"></option>
-      </select>
+        <label for="accountCurrency">Account Currency:</label>
+        <select id="accountCurrency" name="accountCurrency" th:field="*{accountCurrency}">
+            <option th:each="currency : ${accountCurrency}" th:value="${currency}" th:text="${currency}"></option>
+        </select>
 
-      <button type="submit" class="buttonSubmit">Создать</button>
+        <button type="submit" class="buttonSubmit">Создать</button>
     </form>
 </div>
+
 <br/><hr/>
 <div th:replace="footer"></div>
+
 <script type="module" src="js/dynamicContent.js"></script>
 </body>
 </html>
