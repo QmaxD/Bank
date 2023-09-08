@@ -72,12 +72,11 @@ public class UserController {
 		User user = userRepository.findByUsernameIgnoreCase(username);
 		System.out.println("данные из файла считаны: " + FormAttributes.getCurrentBankAccountNumberFromFile());
 
+		bankAccount.setUserId(user.getId());
+		bankAccount.setFullName(user.getFullname());
 		String accountCurrency = bankAccount.getAccountCurrency();
 		short accountCurrencyNumber = FormAttributes.getAccountCurrencyNumber(accountCurrency);
 		bankAccount.setAccountCurrency(String.valueOf(accountCurrencyNumber));
-
-		bankAccount.setUserId(user.getId());
-		bankAccount.setFullName(user.getFullname());
 		Calendar date = new GregorianCalendar();
 		bankAccount.setCreationDate(date);
 		bankAccount.setAccountNumber(FormAttributes.countCurrentBankAccountsNumber());
