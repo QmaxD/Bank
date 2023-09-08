@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Calendar;
 
 @Setter
 @Getter
@@ -30,14 +31,15 @@ public class BankAccount {
 
     //@Column(name = "accountNumber")
     //private int accountNumber;// 0 000 000 - номер счета
-    //@Column(name = "creationDate")
-    //private LocalDate creationDate = LocalDate.now();// дата создания счета
-    //@Column(name = "renewalDate")
-    //private LocalDate renewalDate;// дата пролонгации счета (продление или прекращение условий)
-    //@Column(name = "isProlongation")
-    //private boolean isProlongation;
-    //@Column(name = "closingDate")
-    //private LocalDate closingDate;
+
+    @Column(name = "creationDate")
+    private Calendar creationDate;// дата создания счета
+    @Column(name = "renewalDate")
+    private Calendar renewalDate;// дата пролонгации счета (продление или прекращение условий)
+    @Column(name = "isProlongation")
+    private boolean isProlongation;
+    @Column(name = "closingDate")
+    private Calendar closingDate;
     @Column(name = "accountName")
     private String accountName;// название счета (зависит от типа счета)*/
     @Column(name = "balance")

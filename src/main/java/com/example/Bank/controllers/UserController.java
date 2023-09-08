@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 @Controller
@@ -34,11 +37,14 @@ public class UserController {
 	public String dashboard(Model model, @AuthenticationPrincipal UserDetails userDetails, BigDecimal balance) {
 		String username = userDetails.getUsername();
 		User user = userRepository.findByUsernameIgnoreCase(username);
+
 		List<BankAccount> bankAccount = bankAccountRepository.findAllByFullName(user.getFullname());
 		model.addAttribute("bank_accounts", bankAccount);
+
 		model.addAttribute("fullname", user.getFullname());
 		model.addAttribute("username", user.getUsername());
 		model.addAttribute("role", "user");
+
 		return "/user-dashboard";
 	}
 
@@ -46,12 +52,16 @@ public class UserController {
 	public String showFormBankAccount(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		String username = userDetails.getUsername();
 		User user = userRepository.findByUsernameIgnoreCase(username);
+
 		model.addAttribute("bankAccount", new BankAccount());
+
 		model.addAttribute("accountName", FormAttributes.accountNames);
 		model.addAttribute("accountCurrency", FormAttributes.accountCurrencies);
+
 		model.addAttribute("fullname", user.getFullname());
 		model.addAttribute("username", user.getUsername());
 		model.addAttribute("role", "user");
+
 		return "/create-bank-account";
 	}
 
@@ -59,13 +69,27 @@ public class UserController {
 	public String createBankAccount(BankAccount bankAccount, @AuthenticationPrincipal UserDetails userDetails, RedirectAttributes ra) {
 		String username = userDetails.getUsername();
 		User user = userRepository.findByUsernameIgnoreCase(username);
+
 		bankAccount.setUserId(user.getId());
 		bankAccount.setFullName(user.getFullname());
-		if (bankAccount.getAccountName().equals("Универсальный"))
+		Calendar date = new GregorianCalendar();
+		bankAccount.setCreationDate(date);
+
+		if (bankAccount.getAccountName().equals("Универсальный")){
+			bankAccount.setProlongation(true);
 			bankAccount.setInterestRate(0.01);
-		else if (bankAccount.getAccountName().equals("Накопительный"))
+			date.add(Calendar.YEAR, 5);
+			bankAccount.setRenewalDate(date);
+		}
+		else if (bankAccount.getAccountName().equals("Накопительный")) {
+			bankAccount.setProlongation(false);
 			bankAccount.setInterestRate(5.50);
+			date.add(Calendar.YEAR, 1);
+			bankAccount.setRenewalDate(date);
+		}
+
 		bankAccountRepository.save(bankAccount);
+
 		return "redirect:/user/create-bank-account";
 	}
 
