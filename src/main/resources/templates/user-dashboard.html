@@ -25,22 +25,28 @@
 <div class="dashboard">
 	<table>
 		<tr>
-			<th style="width: 120px;">ID</th>
+			<!--<th style="width: 120px;">ID</th>-->
+			<th style="width: 120px;">Номер счета</th>
 			<th style="width: 80px;">Валюта</th>
 			<th style="width: 150px;">Тип счета</th>
 			<th style="width: 100px;">Баланс</th>
 			<th style="width: 100px;">Процент</th>
-			<th style="min-width: 100px;">Владелец</th>
-			<th style="width: 120px;">ID владельца</th>
+			<th style="">Дата создания</th>
+			<th style="">Пролонгация</th>
+			<!--<th style="min-width: 100px;">Владелец</th>-->
+			<!--<th style="width: 120px;">ID владельца</th>-->
 		</tr>
 		<tr th:each="acc : ${bank_accounts}">
-			<td th:text="${acc.id}"></td>
+			<!--<td th:text="${acc.id}"></td>-->
+			<td th:text="${acc.accountNumber}"></td>
 			<td th:text="${T(com.example.Bank.models.FormAttributes).getAccountCurrencyString(acc.accountCurrency)}"></td>
 			<td th:text="${acc.accountName}"></td>
 			<td th:text="${acc.balance}"></td>
 			<td th:text="${acc.interestRate + '%'}"></td>
-			<td th:text="${acc.fullName}"></td>
-			<td th:text="${acc.userId}"></td>
+			<td th:text="${#dates.format(acc.creationDate, 'yyyy-MM-dd')}"></td>
+			<td th:text="${#dates.format(acc.renewalDate, 'yyyy-MM-dd')}"></td>
+			<!--<td th:text="${acc.fullName}"></td>-->
+			<!--<td th:text="${acc.userId}"></td>-->
 		</tr>
 	</table>
 </div>
