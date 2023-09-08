@@ -10,8 +10,9 @@ import java.util.List;
 
 @Repository
 public interface BankAccountRepository extends JpaRepository<BankAccount, Long> {
-    List<BankAccount> findAllById(Long id);
-    List<BankAccount> findAllByBalance(BigDecimal balance);
+    //List<BankAccount> findAllById(Long id);
+    //List<BankAccount> findAllByUserId(Long id);
+    List<BankAccount> findAllByFullName(String name);
+    //List<BankAccount> findAllByBalance(BigDecimal balance);
 
-    //List<BankAccount> findAllByName(String name);
 }

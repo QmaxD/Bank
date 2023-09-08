@@ -32,16 +32,12 @@ public class UserController {
 
 	@GetMapping("/dashboard")
 	public String dashboard(Model model, @AuthenticationPrincipal UserDetails userDetails, BigDecimal balance) {
-
-		List<BankAccount> bankAccount = bankAccountRepository.findAllByBalance(BigDecimal.valueOf(0));
-		model.addAttribute("bank_accounts", bankAccount);
-
 		String username = userDetails.getUsername();
-		//User user = userRepository.findByUsernameIgnoreCase(username);
+		User user = userRepository.findByUsernameIgnoreCase(username);
+		List<BankAccount> bankAccount = bankAccountRepository.findAllByFullName(user.getFullname());
+		model.addAttribute("bank_accounts", bankAccount);
 		model.addAttribute("username", username);
 		model.addAttribute("role", "user");
-
-		//return "/user-dashboard";
 		return "/user-dashboard";
 	}
 
@@ -52,7 +48,11 @@ public class UserController {
 	}
 
 	@PostMapping("/create-bank-account")
-	public String createBankAccount(BankAccount bankAccount, RedirectAttributes ra) {
+	public String createBankAccount(BankAccount bankAccount, @AuthenticationPrincipal UserDetails userDetails, RedirectAttributes ra) {
+		String username = userDetails.getUsername();
+		User user = userRepository.findByUsernameIgnoreCase(username);
+		bankAccount.setUserId(user.getId());
+		bankAccount.setFullName(user.getFullname());
 		bankAccountRepository.save(bankAccount);
 		return "redirect:/user/create-bank-account";
 	}

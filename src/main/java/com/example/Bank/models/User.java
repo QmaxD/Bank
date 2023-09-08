@@ -7,6 +7,9 @@ import lombok.ToString;
 import org.springframework.stereotype.Component;
 import java.util.List;
 
+@Setter
+@Getter
+@ToString
 @Entity
 @Table(name = "users")
 @Component
@@ -39,7 +42,7 @@ public class User {
         this.roles = roles;
     }
 
-    public long getId() {
+    /*public long getId() {
         return id;
     }
     public void setId(long id) {
@@ -68,6 +71,6 @@ public class User {
     }
     public void setRoles(List<Role> roles) {
         this.roles = roles;
-    }
+    }*/
 
 }

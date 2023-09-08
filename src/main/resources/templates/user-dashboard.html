@@ -28,11 +28,13 @@
 				<th>ID</th>
 				<th>Balance</th>
 				<th>FullName</th>
+				<th>UserID</th>
 			</tr>
 			<tr th:each="acc : ${bank_accounts}">
 				<td th:text="${acc.id}"></td>
 				<td th:text="${acc.balance}"></td>
 				<td th:text="${acc.fullName}"></td>
+				<td th:text="${acc.userId}"></td>
 			</tr>
 		</table>
 	</div>

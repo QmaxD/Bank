@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Setter
 @Getter
@@ -42,18 +41,16 @@ public class BankAccount {
     private double interestRate;*/
     @Column(name = "fullName")
     private String fullName;
-    //@Column(name = "user_id")
-    //private String user_id;
+    @Column(name = "user_id")
+    private Long userId;
 
     public BankAccount() {}
     public BankAccount(
             long id,
-            int balance,
-            String fullName)
+            int balance)
     {
         this.id = id;
         this.balance = BigDecimal.valueOf(balance);
-        this.fullName = fullName;
     }
 
 }

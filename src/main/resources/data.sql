@@ -1,11 +1,11 @@
 INSERT INTO bank_accounts
-VALUES ('101', 0, 'Воротынцев Дмитрий');
+VALUES ('101', 0, 'Воротынцев Дмитрий', '102');
 INSERT INTO bank_accounts
-VALUES ('102', 10, 'Воротынцев Дмитрий');
+VALUES ('102', 10000, 'Воротынцев Дмитрий', '102');
 INSERT INTO bank_accounts
-VALUES ('103', 20, 'Воротынцев Дмитрий');
+VALUES ('103', 20000, 'Воротынцев Дмитрий', '102');
 INSERT INTO bank_accounts
-VALUES ('104', 30, 'Воротынцев Дмитрий');
+VALUES ('104', 30000, 'Воротынцев Дмитрий', '102');
 
 INSERT INTO roles
 VALUES(1, 'ROLE_ADMIN');
