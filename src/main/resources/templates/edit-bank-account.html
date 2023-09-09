@@ -34,13 +34,10 @@
     <form th:action="@{/user/edit-bank-account/{id}/}" th:object="${bankAccount}" method="POST">
         <div class="form-group">
             <input type="hidden" th:field="*{id}" />
-            <div>
-                <label>Баланс: <span th:text="${bankAccount.balance}"></span></label>
-            </div>
-            <div>
-                <label for="balance">Изменить:</label>
+            <input type="hidden" th:field="*{accountName}" />
+            <div>Баланс: <span th:text="${bankAccount.balance}"></span></div><br/>
+            <div for="balance">Изменить на сумму:</div>
             <input type="text" id="balance" name="balance" th:value="${bankAccount.balance}" />
-            </div>
         </div>
         <button type="submit" class="buttonSubmit">Save</button>
     </form>

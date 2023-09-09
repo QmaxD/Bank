@@ -17,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -63,7 +62,23 @@ public class UserController {
 	public String editBankAccount(@ModelAttribute("bankAccount") BankAccount updatedBankAccount) {
 		BankAccount bankAccount = bankAccountRepository.findById(updatedBankAccount.getId())
 				.orElseThrow(() -> new IllegalArgumentException("Invalid bankAccount Id:" + updatedBankAccount.getId()));
-		bankAccount.setBalance(updatedBankAccount.getBalance());
+		BigDecimal temp = new BigDecimal(0);
+		BigDecimal balance = bankAccount.getBalance();
+		BigDecimal change = updatedBankAccount.getBalance();
+		if (change.compareTo(temp) < 0) {
+			System.out.println("снимаем сумму");
+			if (balance.compareTo(change) >= 0) {
+				bankAccount.setBalance(balance.add(change));
+			}
+		}
+		else if (change.compareTo(temp) > 0) {
+			System.out.println("кладем сумму");
+			bankAccount.setBalance(balance.add(change));
+		} else {
+			System.out.println("ничего не делаем");
+		}
+
+		//bankAccount.setBalance(updatedBankAccount.getBalance());
 		bankAccountRepository.save(bankAccount);
 		return "redirect:/user/dashboard";
 	}
