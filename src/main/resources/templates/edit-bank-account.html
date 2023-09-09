@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение данных счета</title>
+
+    <!-- add Icon -->
+    <link rel="shortcut icon" type="image/x-icon"
+          href="../../png/favicon.png" th:href="@{/png/favicon.png}" />
+    <!-- add Bootstrap library -->
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/bootstrap.css" th:href="@{/css/bootstrap.css}" />
+    <!-- add CSS library -->
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/dashboard.css" th:href="@{/css/form.css}" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/dashboard.css" th:href="@{/css/dashboard.css}" />
+    <link rel="stylesheet" type="text/css" media="all"
+          href="../../css/main.css" th:href="@{/css/main.css}" />
+    <!-- add JS library -->
+    <script type="text/javascript" th:src="@{/js/bootstrap.js}"></script>
+    <script type="text/javascript" th:src="@{/js/jquery-3.6.4.js}"></script>
+</head>
+
+<body>
+<div th:replace="nav"></div>
+
+<div class="formSection2">
+    <h1>Изменить данные в счете</h1>
+
+    <p class="warning" th:if="${error}" th:utext="${error}"></p>
+    <p class="success" th:if="${success}" th:utext="${success}"></p>
+
+    <form th:action="@{/user/edit-bank-account/{id}/}" th:object="${bankAccount}" method="POST">
+        <div class="form-group">
+            <input type="hidden" th:field="*{id}" />
+            <div>
+                <label>Баланс: <span th:text="${bankAccount.balance}"></span></label>
+            </div>
+            <div>
+                <label for="balance">Изменить:</label>
+            <input type="text" id="balance" name="balance" th:value="${bankAccount.balance}" />
+            </div>
+        </div>
+        <button type="submit" class="buttonSubmit">Save</button>
+    </form>
+</div>
+
+<br/><hr/>
+<div th:replace="footer"></div>
+
+<script type="module" src="../../js/dynamicContent.js"></script>
+</body>
+</html>

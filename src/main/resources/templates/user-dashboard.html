@@ -37,6 +37,8 @@
 			<th style="">Пролонгация</th>
 			<!--<th style="min-width: 100px;">Владелец</th>-->
 			<!--<th style="width: 120px;">ID владельца</th>-->
+			<th>Изменить</th>
+			<th>Удалить</th>
 		</tr>
 		<tr th:each="acc : ${bank_accounts}">
 			<!--<td th:text="${acc.id}"></td>-->
@@ -49,6 +51,8 @@
 			<td th:text="${#dates.format(acc.renewalDate, 'yyyy-MM-dd')}"></td>
 			<!--<td th:text="${acc.fullName}"></td>-->
 			<!--<td th:text="${acc.userId}"></td>-->
+			<td><a th:href="@{/user/edit-bank-account/{id}/(id=${acc.id})}">изменить</a></td>
+			<td><a th:href="@{/user/delete-bank-account/{id}/(id=${acc.id})}">удалить</a></td>
 		</tr>
 	</table>
 </div>

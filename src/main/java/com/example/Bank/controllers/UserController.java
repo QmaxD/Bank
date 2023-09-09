@@ -35,34 +35,55 @@ public class UserController {
 	private UserService userService;
 
 	@GetMapping("/dashboard")
-	public String dashboard(Model model, @AuthenticationPrincipal UserDetails userDetails, BigDecimal balance) {
+	public String dashboard(Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		String username = userDetails.getUsername();
 		User user = userRepository.findByUsernameIgnoreCase(username);
-
 		List<BankAccount> bankAccount = bankAccountRepository.findAllByFullName(user.getFullname());
 		model.addAttribute("bank_accounts", bankAccount);
-
 		model.addAttribute("fullname", user.getFullname());
 		model.addAttribute("username", user.getUsername());
 		model.addAttribute("role", "user");
-
 		return "/user-dashboard";
 	}
 
-	@GetMapping("/create-bank-account")
-	public String showFormBankAccount(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+	@GetMapping("/edit-bank-account/{id}/")
+	public String showBankAccountEditForm(@PathVariable("id") long id, Model model, @AuthenticationPrincipal UserDetails userDetails) {
 		String username = userDetails.getUsername();
 		User user = userRepository.findByUsernameIgnoreCase(username);
-
-		model.addAttribute("bankAccount", new BankAccount());
-
-		model.addAttribute("accountName", FormAttributes.accountNames);
-		model.addAttribute("accountCurrency", FormAttributes.accountCurrencies);
-
+		BankAccount bankAccount = bankAccountRepository.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid bankAccount Id:" + id));
+		model.addAttribute("bankAccount", bankAccount);
 		model.addAttribute("fullname", user.getFullname());
 		model.addAttribute("username", user.getUsername());
 		model.addAttribute("role", "user");
+		return "/edit-bank-account";
+	}
 
+	@PostMapping("/edit-bank-account/{id}/")
+	public String editBankAccount(@ModelAttribute("bankAccount") BankAccount updatedBankAccount) {
+		BankAccount bankAccount = bankAccountRepository.findById(updatedBankAccount.getId())
+				.orElseThrow(() -> new IllegalArgumentException("Invalid bankAccount Id:" + updatedBankAccount.getId()));
+		bankAccount.setBalance(updatedBankAccount.getBalance());
+		bankAccountRepository.save(bankAccount);
+		return "redirect:/user/dashboard";
+	}
+
+	@GetMapping("/delete-bank-account/{id}/")
+	public String deleteBankAccount(@PathVariable("id") long id, Model model) {
+		bankAccountRepository.deleteById(id);
+		return "redirect:/user/dashboard";
+	}
+
+	@GetMapping("/create-bank-account")
+	public String showBankAccountsForm(Model model, @AuthenticationPrincipal UserDetails userDetails) {
+		String username = userDetails.getUsername();
+		User user = userRepository.findByUsernameIgnoreCase(username);
+		model.addAttribute("bankAccount", new BankAccount());
+		model.addAttribute("accountName", FormAttributes.accountNames);
+		model.addAttribute("accountCurrency", FormAttributes.accountCurrencies);
+		model.addAttribute("fullname", user.getFullname());
+		model.addAttribute("username", user.getUsername());
+		model.addAttribute("role", "user");
 		return "/create-bank-account";
 	}
 
